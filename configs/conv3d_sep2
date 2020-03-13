@@ -14,7 +14,7 @@
   "add_masks": true,
 
   # Pretrained model from tensorpack
-  "load_init": "/globalwork/krause/pretrained_models/tensorpack/PReMVOS-COCO-Mapillary-PreProcForKITTISegtrack/converted",
+  "load_init": "/usr/src/TrackR-CNN/models",
   # Freeze applies to the whole model, not just our backend, but that's fine since only the backend uses batchnorm
   "freeze_batchnorm": true,
   "max_saves_to_keep": 1,
