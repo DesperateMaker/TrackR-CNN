@@ -20,6 +20,7 @@ RUN apt-get install -y --no-install-recommends python python3-pip python-dev pyt
     pip3 install --no-cache-dir --upgrade pip setuptools && \
     echo "alias python='python3'" >> /root/.bash_aliases && \
     echo "alias pip='pip3'" >> /root/.bash_aliases
+
 #
 # Pillow and it's dependencies
 #
@@ -38,9 +39,24 @@ RUN pip3 --no-cache-dir install \
 RUN pip3 install --no-cache-dir --upgrade tensorflow==1.13.0rc0 tensorflow-estimator==1.13.0
 
 #
+# OpenCV
+#
+RUN pip3 install opencv-python
+
+#
 # PyCocoTools
 #
 RUN pip3 install pycocotools
+
+#
+# TrackR-CNN depences
+#
+RUN pip3 install munkres imbalanced-learn vtk && \
+    apt-get install -y libsm6 libxext6 libglib2.0-0 \
+    libgl1-mesa-glx libegl1-mesa libxrandr2 libxss1 libxcursor1 \
+    libxcomposite1 libasound2 libxi6 libxtst6
+
+
     
 #set a directory for the app
 WORKDIR /usr/src/TrackR-CNN
@@ -48,5 +64,6 @@ WORKDIR /usr/src/TrackR-CNN
 #copy all the files to the container
 COPY . .
 
+RUN mkdir forwarded models summaries logs data
 #run the command
 #CMD ["python","./main.py"]
