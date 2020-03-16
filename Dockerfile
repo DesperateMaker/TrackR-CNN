@@ -1,4 +1,5 @@
-FROM ubuntu:latest
+FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
+#FROM ubuntu:latest
 
 #autor of docker file only
 LABEL autor="thedesperatemaker@gmail.com"
@@ -36,7 +37,7 @@ RUN pip3 --no-cache-dir install \
 #
 # Tensorflow 1.13.0rc0 - CPU
 #
-RUN pip3 install --no-cache-dir --upgrade tensorflow==1.13.0rc0 tensorflow-estimator==1.13.0
+RUN pip3 install --no-cache-dir --upgrade tensorflow==1.13.0rc0 tensorflow-estimator==1.13.0 tensorboard==1.13.0
 
 #
 # OpenCV
@@ -67,3 +68,6 @@ COPY . .
 RUN mkdir forwarded models summaries logs data
 #run the command
 #CMD ["python","./main.py"]
+
+RUN apt-get install -y nvidia-cuda-toolkit
+RUN pip3 install tensorflow-gpu==1.13.1
