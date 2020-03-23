@@ -27,9 +27,9 @@
   "max_saves_to_keep": 1,
 
   # Dataset options
-  "KITTI_segtrack_data_dir": "/TrackR-CNN/data/KITTI_MOTS/train/",
-  "MOTS_segtrack_data_dir": "/TrackR-CNN/data/MOTSChallenge/train/",
-  "optical_flow_path": "/TrackR-CNN/data/KITTI_flow_pwc/",
+  "KITTI_segtrack_data_dir": "/usr/src/TrackR-CNN/data/KITTI_MOTS/train/",
+  "MOTS_segtrack_data_dir": "/usr/src/TrackR-CNN/data/MOTSChallenge/train/",
+  "optical_flow_path": "/usr/src/TrackR-CNN/data/KITTI_flow_pwc/",
   "prefer_gt_to_ignore": true,
   "use_ioa_for_ignore": true,
   "use_masks_for_ignore": true,

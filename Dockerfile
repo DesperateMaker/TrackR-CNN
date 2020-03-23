@@ -1,5 +1,5 @@
 FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
-#FROM ubuntu:latest
+#FROM ubuntu:18.04
 
 #autor of docker file only
 LABEL autor="thedesperatemaker@gmail.com"
@@ -10,7 +10,8 @@ ENV USER="USER"
 #
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git curl vim unzip openssh-client wget \
-    build-essential cmake checkinstall gcc
+    build-essential cmake checkinstall gcc \
+    tmux gnupg htop
 
 #
 # Python 3
@@ -37,17 +38,17 @@ RUN pip3 --no-cache-dir install \
 #
 # Tensorflow 1.13.0rc0 - CPU
 #
-RUN pip3 install --no-cache-dir --upgrade tensorflow==1.13.0rc0 tensorflow-estimator==1.13.0 tensorboard==1.13.0
+RUN pip3 install --no-cache-dir tensorflow==1.13.0rc0 tensorflow-estimator==1.13.0 
 
 #
 # OpenCV
 #
-RUN pip3 install opencv-python
+RUN pip3 install --no-cache-dir opencv-python
 
 #
 # PyCocoTools
 #
-RUN pip3 install pycocotools
+RUN pip3 install --no-cache-dir pycocotools
 
 #
 # TrackR-CNN depences
@@ -69,5 +70,13 @@ RUN mkdir forwarded models summaries logs data
 #run the command
 #CMD ["python","./main.py"]
 
-RUN apt-get install -y nvidia-cuda-toolkit
-RUN pip3 install tensorflow-gpu==1.13.1
+#RUN apt-get install -y nvidia-cuda-toolkit
+#RUN pip3 install --no-cache-dir tensorflow-gpu==1.13.1
+
+#RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+#RUN dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb &&  apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub 
+
+#RUN apt-get update
+# && apt-get install -y cuda
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
