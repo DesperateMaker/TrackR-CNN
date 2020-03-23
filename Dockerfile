@@ -38,7 +38,7 @@ RUN pip3 --no-cache-dir install \
 #
 # Tensorflow 1.13.0rc0 - CPU
 #
-RUN pip3 install --no-cache-dir tensorflow==1.13.0rc0 tensorflow-estimator==1.13.0 
+RUN pip3 install --no-cache-dir tensorflow==1.13.0rc0 tensorflow-estimator==1.13.0 tensorflow-gpu==1.13.1
 
 #
 # OpenCV
